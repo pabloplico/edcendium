@@ -1,25 +1,71 @@
-## AWS Amplify Next.js (App Router) Starter Template
+## Key Features Implementation
 
-This repository provides a starter template for creating applications using Next.js (App Router) and AWS Amplify, emphasizing easy setup for authentication, API, and database capabilities.
+### Course Creation
+Teachers can create courses by specifying:
+- Course title, learning area, subject, and year level
+- Content descriptors aligned with curriculum standards
+- General capabilities and cross-curriculum priorities
+- Achievement standards for assessment
 
-## Overview
+### Lesson Generation
+The LMS includes an AI-assisted lesson generation tool that:
+- Takes input parameters like title, subject, and grade level
+- Processes teacher prompts to generate tailored lesson content
+- Creates structured lesson plans with objectives, content, and activities
+- Allows editing before saving to the database
 
-This template equips you with a foundational Next.js application integrated with AWS Amplify, streamlined for scalability and performance. It is ideal for developers looking to jumpstart their project with pre-configured AWS services like Cognito, AppSync, and DynamoDB.
+### Dashboard Interfaces
+- **Teacher Dashboard**: Course management tiles, recent activity feed, and quick action buttons
+- **Student Dashboard**: Course progress tracking, upcoming assignments, and enrollment options
 
-## Features
+## Data Model
 
-- **Authentication**: Setup with Amazon Cognito for secure user authentication.
-- **API**: Ready-to-use GraphQL endpoint with AWS AppSync.
-- **Database**: Real-time database powered by Amazon DynamoDB.
+The system uses the following primary entities:
+- **User**: Teachers and students with role-based permissions
+- **Course**: Educational content organized by curriculum standards
+- **Lesson**: Individual learning units with objectives and activities
 
-## Deploying to AWS
+## Future Development
 
-For detailed instructions on deploying your application, refer to the [deployment section](https://docs.amplify.aws/nextjs/start/quickstart/nextjs-app-router-client-components/#deploy-a-fullstack-app-to-aws) of our documentation.
+Planned enhancements include:
+- Assignment creation and submission system
+- Student enrollment and progress tracking
+- Resource library for teaching materials
+- Integrated assessment tools
+- Parent portal for guardian oversight
 
-## Security
+## Key Features Implementation
 
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+### Course Creation
+Teachers can create courses by specifying:
+- Course title, learning area, subject, and year level
+- Content descriptors aligned with curriculum standards
+- General capabilities and cross-curriculum priorities
+- Achievement standards for assessment
 
-## License
+### Lesson Generation
+The LMS includes an AI-assisted lesson generation tool that:
+- Takes input parameters like title, subject, and grade level
+- Processes teacher prompts to generate tailored lesson content
+- Creates structured lesson plans with objectives, content, and activities
+- Allows editing before saving to the database
 
-This library is licensed under the MIT-0 License. See the LICENSE file.
+### Dashboard Interfaces
+- **Teacher Dashboard**: Course management tiles, recent activity feed, and quick action buttons
+- **Student Dashboard**: Course progress tracking, upcoming assignments, and enrollment options
+
+## Data Model
+
+The system uses the following primary entities:
+- **User**: Teachers and students with role-based permissions
+- **Course**: Educational content organized by curriculum standards
+- **Lesson**: Individual learning units with objectives and activities
+
+## Future Development
+
+Planned enhancements include:
+- Assignment creation and submission system
+- Student enrollment and progress tracking
+- Resource library for teaching materials
+- Integrated assessment tools
+- Parent portal for guardian oversight

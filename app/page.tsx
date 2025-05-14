@@ -1,51 +1,63 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
-import "./../app/app.css";
 import { Amplify } from "aws-amplify";
 import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
+import { Authenticator } from "@aws-amplify/ui-react";
+import { useRouter } from "next/navigation";
 
 Amplify.configure(outputs);
 
 const client = generateClient<Schema>();
 
-export default function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
-  function listTodos() {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }
-
-  useEffect(() => {
-    listTodos();
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({
-      content: window.prompt("Todo content"),
-    });
-  }
+export default function Home() {
+  const router = useRouter();
 
   return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/nextjs/start/quickstart/nextjs-app-router-client-components/">
-          Review next steps of this tutorial.
-        </a>
+    <main className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-50">
+      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-blue-600 mb-2">Learning Management System</h1>
+          <p className="text-gray-600">A platform for teachers and students to create and manage educational content</p>
+        </div>
+
+        <Authenticator>
+          {({ user, signOut }) => {
+            // Redirect to dashboard after successful sign-in
+            useEffect(() => {
+              if (user) {
+                // Check user role attribute to determine which dashboard to show
+                const userRole = user.attributes?.role;
+
+                if (userRole === 'teacher') {
+                  router.push("/dashboard/teacher");
+                } else if (userRole === 'student') {
+                  router.push("/dashboard/student");
+                } else {
+                  // If role is not set, default to student dashboard
+                  // In a production app, you might want to redirect to a role selection page
+                  console.warn("User role not set, defaulting to student dashboard");
+                  router.push("/dashboard/student");
+                }
+              }
+            }, [user]);
+
+            return (
+              <div className="text-center">
+                <p className="mb-4 text-green-600">Successfully signed in! Redirecting to dashboard...</p>
+                <button
+                  onClick={signOut}
+                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+                >
+                  Sign out
+                </button>
+              </div>
+            );
+          }}
+        </Authenticator>
       </div>
     </main>
   );
