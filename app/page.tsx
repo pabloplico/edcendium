@@ -4,12 +4,13 @@ import { useEffect } from "react";
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
 import { Amplify } from "aws-amplify";
-import outputs from "@/amplify_outputs.json";
+import config from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
 import { Authenticator } from "@aws-amplify/ui-react";
 import { useRouter } from "next/navigation";
 
-Amplify.configure(outputs);
+// Configure Amplify in client-side code
+Amplify.configure(config);
 
 const client = generateClient<Schema>();
 
