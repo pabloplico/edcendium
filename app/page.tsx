@@ -31,7 +31,7 @@ export default function Home() {
             useEffect(() => {
               if (user) {
                 // Check user role attribute to determine which dashboard to show
-                const userRole = user.attributes?.role;
+                const userRole = (user as any).attributes?.role;
 
                 if (userRole === 'teacher') {
                   router.push("/dashboard/teacher");
